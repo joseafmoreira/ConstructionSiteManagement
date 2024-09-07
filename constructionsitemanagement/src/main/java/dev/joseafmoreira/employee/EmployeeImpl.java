@@ -1,4 +1,4 @@
-package dev.joseafmoreira.employee;
+package employee;
 
 import estgconstroi.Employee;
 import estgconstroi.enums.EmployeeType;

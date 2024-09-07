@@ -1,4 +1,4 @@
-package dev.joseafmoreira.equipment;
+package equipment;
 
 import estgconstroi.Equipment;
 import estgconstroi.Equipments;
@@ -67,11 +67,14 @@ public class EquipmentsImpl implements Equipments {
             if (equipment[i].getStatus().equals(status)) {
                 result[resultCount] = equipment[i];
                 resultCount++;
-            }
-            resultCount++;
+            }       
         }
-
-        return result;
+        Equipment[] result2 = new EquipmentImpl[resultCount];
+        for (int i = 0; i < resultCount; i++) {
+            result2[i] = result[i]; 
+        }
+        
+        return result2;
     }
 
     @Override
@@ -82,11 +85,14 @@ public class EquipmentsImpl implements Equipments {
             if (equipment[i].getType().equals(type)) {
                 result[resultCount] = equipment[i];
                 resultCount++;
-            }
-            resultCount++;
+            }       
         }
-
-        return result;
+        Equipment[] result2 = new EquipmentImpl[resultCount];
+        for (int i = 0; i < resultCount; i++) {
+            result2[i] = result[i]; 
+        }
+        
+        return result2;
     }
 
     @Override

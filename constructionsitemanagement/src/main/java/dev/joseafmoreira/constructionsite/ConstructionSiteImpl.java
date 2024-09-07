@@ -1,14 +1,20 @@
-package dev.joseafmoreira.constructionsite;
+package constructionsite;
 
 import java.time.LocalDate;
 
-import dev.joseafmoreira.team.TeamImpl;
 import estgconstroi.ConstructionSite;
 import estgconstroi.Employee;
 import estgconstroi.Equipments;
 import estgconstroi.Team;
 import estgconstroi.enums.EmployeeType;
 import estgconstroi.exceptions.ConstructionSiteException;
+import team.TeamImpl;
+
+/**
+ * Nome: Ricardo Afonso Saavedra Ferreira
+ * Número: 8220132
+ * Turma: LSIRC
+ */
 
 public class ConstructionSiteImpl implements ConstructionSite {
     private final String name;
