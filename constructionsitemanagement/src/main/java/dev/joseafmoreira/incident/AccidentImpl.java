@@ -1,4 +1,4 @@
-package incident;
+package dev.joseafmoreira.incident;
 
 import estgconstroi.Accident;
 import estgconstroi.Employee;

@@ -1,9 +1,9 @@
-package team;
+package dev.joseafmoreira.team;
 
 import java.util.Arrays;
 
-import employee.EmployeeImpl;
-import equipment.EquipmentsImpl;
+import dev.joseafmoreira.employee.EmployeeImpl;
+import dev.joseafmoreira.equipment.EquipmentsImpl;
 import estgconstroi.Employee;
 import estgconstroi.Equipments;
 import estgconstroi.Team;

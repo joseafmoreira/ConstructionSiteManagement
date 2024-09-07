@@ -1,4 +1,4 @@
-package equipment;
+package dev.joseafmoreira.equipment;
 
 import estgconstroi.Equipment;
 import estgconstroi.enums.EquipmentStatus;
