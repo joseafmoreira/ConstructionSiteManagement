@@ -21,9 +21,8 @@ public class ConstructionSiteImpl implements ConstructionSite {
     private Team[] teams;
     private int teamsCount;
     private final Equipments equipments;
-    private final boolean isValid;
 
-    public ConstructionSiteImpl(String name, String location, String permit, LocalDate permitExpirationDate, LocalDate startDate, LocalDate endDate, Equipments equipments, boolean isValid) {
+    public ConstructionSiteImpl(String name, String location, String permit, LocalDate permitExpirationDate, LocalDate startDate, LocalDate endDate, Equipments equipments) {
         this.name = name;
         this.location = location;
         setPermit(permit, permitExpirationDate);
@@ -32,7 +31,6 @@ public class ConstructionSiteImpl implements ConstructionSite {
         teams = new TeamImpl[INITIAL_TEAM];
         teamsCount = 0;
         this.equipments = equipments;
-        this.isValid = isValid;
     }
 
     @Override
@@ -144,7 +142,7 @@ public class ConstructionSiteImpl implements ConstructionSite {
 
     @Override
     public boolean isValid() {
-        return isValid;
+        return false;
     }
 
     @Override
