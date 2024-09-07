@@ -68,7 +68,6 @@ public class EquipmentsImpl implements Equipments {
                 result[resultCount] = equipment[i];
                 resultCount++;
             }
-            resultCount++;
         }
 
         return result;
@@ -83,7 +82,6 @@ public class EquipmentsImpl implements Equipments {
                 result[resultCount] = equipment[i];
                 resultCount++;
             }
-            resultCount++;
         }
 
         return result;
