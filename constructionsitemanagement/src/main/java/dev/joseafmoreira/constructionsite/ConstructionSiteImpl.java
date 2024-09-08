@@ -85,11 +85,21 @@ public class ConstructionSiteImpl implements ConstructionSite {
     public void setResponsible(Employee employee) throws ConstructionSiteException {
         if (!employee.getType().equals(EmployeeType.MANAGER)) throw new ConstructionSiteException("Employee isn't a manager");
 
-        for (int i = 0; i < teamsCount; i++) {
+        boolean set = false;
+        for (int i = 0; (i < teamsCount && !set); i++) {
             Employee[] employees = teams[i].getEmployees();
             for (int j = 0; j < teams[i].getNumberOfEmployees(); j++) {
-                if (employees[j].getType().equals(EmployeeType.MANAGER)) employees[j].setType(EmployeeType.WORKER);
-                if (employees[j].equals(employee)) employees[j].setType(EmployeeType.MANAGER);
+                if (employees[j].equals(employee)) {
+                    employees[j].setType(EmployeeType.MANAGER);
+                    for (int k = 0; k < teams[i].getNumberOfEmployees(); k++) {
+                        if (employees[k].getType().equals(EmployeeType.MANAGER)) {
+                            employees[k].setType(EmployeeType.WORKER);
+                            break;
+                        }
+                    }
+                    set = true;
+                    break;
+                }
             }
         }
     }

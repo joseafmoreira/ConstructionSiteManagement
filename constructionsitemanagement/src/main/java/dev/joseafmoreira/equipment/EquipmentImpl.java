@@ -37,27 +37,16 @@ public class EquipmentImpl implements Equipment {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null || getClass() != obj.getClass()) {
-            return false;
-        }
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
 
         EquipmentImpl other = (EquipmentImpl) obj;
-        if (name == null) {
-            if (other.name != null) {
-                return false;
-            }
-        } else if (!name.equals(other.name)) {
-            return false;
-        }
-        if (status != other.status) {
-            return false;
-        }
-        if (type != other.type) {
-            return false;
-        }
+        if (name == null)
+            if (other.name != null) return false;
+        else if (!name.equals(other.name)) return false;
+        if (status != other.status) return false;
+        if (type != other.type) return false;
+        
         return true;
     }
 

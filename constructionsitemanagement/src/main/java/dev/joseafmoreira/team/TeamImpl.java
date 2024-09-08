@@ -1,7 +1,5 @@
 package dev.joseafmoreira.team;
 
-import java.util.Arrays;
-
 import dev.joseafmoreira.employee.EmployeeImpl;
 import dev.joseafmoreira.equipment.EquipmentsImpl;
 import estgconstroi.Employee;
@@ -43,8 +41,16 @@ public class TeamImpl implements Team {
         if (!employee.getType().equals(EmployeeType.TEAM_LEADER)) throw new TeamException("Employee not a team leader");
 
         for (int i = 0; i < employeeCount; i++) {
-            if (employees[i].getType().equals(EmployeeType.TEAM_LEADER)) employees[i].setType(EmployeeType.WORKER);
-            if (employees[i].equals(employee)) employees[i].setType(EmployeeType.TEAM_LEADER);
+            if (employees[i].equals(employee)) {
+                employees[i].setType(EmployeeType.TEAM_LEADER);
+                for (int j = 0; j < employeeCount; j++) {
+                    if (employees[j].getType().equals(EmployeeType.TEAM_LEADER)) {
+                        employees[j].setType(EmployeeType.WORKER);
+                        break;
+                    }
+                }
+                break;
+            }
         }
     }
 
@@ -120,27 +126,19 @@ public class TeamImpl implements Team {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
         TeamImpl other = (TeamImpl) obj;
-        if (name == null) {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        if (!Arrays.equals(employees, other.employees))
-            return false;
-        if (employeeCount != other.employeeCount)
-            return false;
-        if (equipments == null) {
-            if (other.equipments != null)
-                return false;
-        } else if (!equipments.equals(other.equipments))
-            return false;
+        if (name == null)
+            if (other.name != null) return false;
+        else if (!name.equals(other.name)) return false;
+        if (employeeCount != other.employeeCount) return false;
+        if (equipments == null)
+            if (other.equipments != null) return false;
+        else if (!equipments.equals(other.equipments)) return false;
+        for (int i = 0; i < employeeCount; i++) if (!employees[i].equals(other.employees[i])) return false;
+
         return true;
     }
 
