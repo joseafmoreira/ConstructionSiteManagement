@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"estgconstroi"},{"l":"estgconstroi.enums"},{"l":"estgconstroi.exceptions"}];updateSearchResults();

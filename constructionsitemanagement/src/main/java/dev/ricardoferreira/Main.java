@@ -1,13 +1,19 @@
-
-import dev.joseafmoreira.constructionsite.ConstructionSiteImpl;
-import dev.joseafmoreira.employee.EmployeeImpl;
-import dev.joseafmoreira.equipment.EquipmentImpl;
-import dev.joseafmoreira.equipment.EquipmentsImpl;
-import dev.joseafmoreira.team.TeamImpl;
+import constructionsite.ConstructionSiteImpl;
+import equipment.EquipmentImpl;
+import equipment.EquipmentsImpl;
+import employee.EmployeeImpl;
+import estgconstroi.enums.EquipmentStatus;
+import estgconstroi.enums.EquipmentType;
+import estgconstroi.exceptions.ConstructionSiteException;
+import estgconstroi.enums.EmployeeType;
+import estgconstroi.enums.EventPriority;
+import event.EventImpl;
+import event.EventManagerImpl;
 import java.io.IOException;
+import team.TeamImpl;
 import java.time.LocalDate;
-
-
+import java.util.Arrays;
+import reporter.InsuranceReporterImpl;
 
 
 /**
@@ -18,7 +24,7 @@ import java.time.LocalDate;
 public class Main {
 
     
-    public static void main(String[] args) throws ConstructionSiteException {
+    public static void main(String[] args) throws ConstructionSiteException, IOException, InterruptedException {
         
         // Equipamentos
         EquipmentsImpl equipamentos = new EquipmentsImpl();
@@ -69,37 +75,26 @@ public class Main {
 //        System.out.println(estaleiro1.getResponsible()); 
         
         //Event
-        EventImpl event = new EventImpl(EventPriority.LOW, "caiu pedra", employee300, estaleiro1, "apenas caiu");
-        System.out.println("Event Details:");
-        System.out.println(event.getDetails());
-        System.out.println(event.getNotificationMessage());
-        
-        
+        EventImpl event1 = new EventImpl(EventPriority.LOW, "caiu pedra", employee300, estaleiro1, "apenas caiu");
+        EventImpl event2 = new EventImpl(EventPriority.IMMEDIATE, "caiu madeira", employee300, estaleiro1, "apenas caiu");
+        EventImpl event3 = new EventImpl(EventPriority.LOW, "caiu parede", employee300, estaleiro1, "apenas caiu");
+
+        //Event Managerx
+        EventManagerImpl manager = new EventManagerImpl(); 
+        manager.reportEvent(event1);
+        manager.reportEvent(event2);
+        manager.reportEvent(event3);
+
+        System.out.println(manager.getEvent(LocalDate.of(2024, 9, 7),LocalDate.of(2024, 9, 9)));
+//        System.out.println(manager.getEvent(LocalDate.of(2024, 9, 8)));
+
         //Insurance 
-        String eventJson = "{"
-                + "\"groupname\": \"Grupo89\","
-                + "\"groupkey\": \"your-group-key-here\","
-                + "\"event\": {"
-                + "\"uuid\": \"abcd\","
-                + "\"data\": \"2022-05-30\","
-                + "\"priority\": \"High\","
-                + "\"eventtype\": \"Accident\","
-                + "\"title\": \"Avaria de máquina\","
-                + "\"constructionsitename\": \"cs1\","
-                + "\"details\": \"...\","
-                + "\"employeename\": \"João\""
-                + "}"
-                + "}";
+//        System.out.println(InsuranceReporterImpl.addEvent(InsuranceReporterImpl.formaterJSON(event1)));
+//        System.out.println(InsuranceReporterImpl.addEvent(InsuranceReporterImpl.formaterJSON(event2)));
+//        System.out.println(InsuranceReporterImpl.addEvent(InsuranceReporterImpl.formaterJSON(event3)));
         
-        try {
-            String response = InsuranceReporterImpl.addEvent(eventJson);
-            System.out.println("Response from insurer: " + response);
-        } catch (IOException e) {
-            System.err.println("IOException occurred: " + e.getMessage());
-        } catch (InterruptedException e) {
-            System.err.println("InterruptedException occurred: " + e.getMessage());
-        }
-        
+//        System.out.println(InsuranceReporterImpl.resetEvents("LEETLEETLEETLEET", "Grupo1337"));
+//        System.out.println(InsuranceReporterImpl.getEvents("LEETLEETLEETLEET", "Grupo1337"));
         
     }
 
